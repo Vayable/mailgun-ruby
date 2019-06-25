@@ -96,7 +96,7 @@ To get the Mailgun `message_id` after ActionMailer has successfully delivered th
 
 ```ruby
   mailer = UserNotifier.welcome_email(current_user)
-  mailer_response = mailer.deliver_now
+  mailer_response = mailer.deliver
   mailgun_message_id = mailer_response.message_id
 ```
 

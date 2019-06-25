@@ -15,8 +15,8 @@ class UnitTestMailer < ActionMailer::Base
   def plain_message(address, subject, headers)
     headers(headers)
     mail(to: address, subject: subject) do |format|
-      format.text { render plain: "Test!" }
-      format.html { render html: "<p>Test!</p>".html_safe }
+      format.text { render text: "Test!" }
+      format.html { render inline: "<p>Test!</p>".html_safe }
     end
   end
 
@@ -26,8 +26,8 @@ class UnitTestMailer < ActionMailer::Base
       :mime_type => 'text/plain',
     }
     mail(to: address, subject: subject) do |format|
-      format.text { render plain: "Test!" }
-      format.html { render html: "<p>Test!</p>".html_safe }
+      format.text { render text: "Test!" }
+      format.html { render inline: "<p>Test!</p>".html_safe }
     end
   end
 
@@ -158,7 +158,7 @@ describe 'Railgun::Mailer' do
 
   it 'delivers!' do
     message = UnitTestMailer.plain_message('test@example.org', '', {})
-    message.deliver_now
+    message.deliver
 
     expect(ActionMailer::Base.deliveries).to include(message)
   end
